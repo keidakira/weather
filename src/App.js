@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import WeatherManager from "./api";
 import "./App.css";
 import WeatherCard from "./components/WeatherCard";

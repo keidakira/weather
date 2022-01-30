@@ -47,7 +47,7 @@ const WeatherCard = ({ data, units, onUnitChange }) => {
           Celcius{" "}
           <Switch
             name="metric"
-            checked={units == "F"}
+            checked={units === "F"}
             onChange={() => onUnitChange(units)}
           />{" "}
           Fahrenheit
