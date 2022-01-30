@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+.main {
+  height: 100vh;
+  background-image: url("https://wallpaperaccess.com/full/148418.jpg");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.large-title {
+  font-size: 2rem;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.medium-title {
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.temperature {
+  font-size: 2rem;
+  font-weight: 100;
+  margin: 1rem;
+}
+
+.flex-inline {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.justify-center {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.justify-between {
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.align-center {
+  align-items: center;
+}
+
+.container {
+  padding: 16px 0px;
+}
+
+.card-container {
+  width: 30%;
+}
+
+.weather-image img {
+  width: 100px;
+}
+
+.weather-image p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card-container {
+    width: 90%;
   }
 }
