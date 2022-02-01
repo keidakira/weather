@@ -1,16 +1,46 @@
-import { Button, TextField } from "@mui/material";
-import React from "react";
+import { Button, Autocomplete, TextField } from "@mui/material";
+import React, {useEffect} from "react";
 import WeatherManager from "./api";
 import "./App.css";
 import WeatherCard from "./components/WeatherCard";
+import cities from "./cities.json";
 
 const App = () => {
   const [query, setQuery] = React.useState("");
   const [data, setData] = React.useState(null);
   const [units, setUnits] = React.useState("F");
+  const [citiesData, setCitiesData] = React.useState([]);
 
-  const handleQueryChange = (event) => {
-    setQuery(event.target.value);
+  useEffect(() => {
+    let tempCitiesArray = new Set();
+    cities.forEach(city => {
+      tempCitiesArray.add(city.name);
+    });
+
+    cities = [...tempCitiesArray].map(city => {
+      return {
+        label: city
+      };
+    });
+
+  }, []);
+
+  const handleQueryChange = (event, newValue) => {
+    if (event?.type === "change") {
+      setQuery(newValue);
+
+      if (newValue.length > 3) {
+        let tempCities = cities.filter((city) =>
+          city.label.toLowerCase().startsWith(newValue.toLowerCase())
+        );
+
+        setCitiesData(tempCities);
+      } else {
+        setCitiesData([]);
+      }
+    } else {
+      setCitiesData([]);
+    }
   };
 
   const getCityWeather = async () => {
@@ -34,10 +64,20 @@ const App = () => {
   return (
     <div>
       <div className="flex-inline container justify-center w-100">
-        <TextField
-          placeholder="City"
+        <Autocomplete
+          disablePortal
+          options={citiesData}
+          sx={{ width: 256 }}
+          freeSolo
           value={query}
-          onChange={handleQueryChange}
+          onChange={(event, newValue) => {
+            setQuery(newValue === null ? "" : newValue.label);
+          }}
+          inputValue={query}
+          onInputChange={(event, newValue) => handleQueryChange(event, newValue)}
+          renderInput={(params) => (
+            <TextField {...params} label="City" />
+          )}
         />
         <Button
           variant="contained"

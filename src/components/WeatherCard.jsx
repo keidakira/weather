@@ -8,7 +8,6 @@ const WeatherCard = ({ data, units, onUnitChange }) => {
   const temperature = data.main;
 
   const [currentTemp, setCurrentTemp] = useState(0);
-  console.log(data.main.temp, currentTemp);
 
   const convertToCelcius = (temp) => {
     return Math.round((temp - 32) * (5 / 9));
